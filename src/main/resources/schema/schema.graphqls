@@ -1,0 +1,35 @@
+type Query {
+  events: [Event!]!
+  order(orderIdList: [String]): [Order]
+
+}
+
+type Mutation {
+  createEvent(name: String!): Event!
+
+  createOrder(quantity: Int!, price: Float!, side: String): Order
+  updateOrder(orderId: String!, quantity: Int, price: Float, status: String): Order!
+}
+
+type Subscription {
+  events: Event!
+
+  orderUpdated: Order!
+}
+
+type Event {
+  name: String!
+  createdOn: DateTime!
+}
+
+type Order {
+  orderId: String!
+  #    security: Security!
+  #    portfolio: Portfolio!
+  quantity: Int!
+  price: Float!
+  status: String!
+  side: String
+}
+
+scalar DateTime
